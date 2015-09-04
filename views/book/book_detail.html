@@ -29,12 +29,12 @@
 
 		          	<div class="detalle__texto">
 
-			            <h1 class="detalle__titulo">Eloquent Javascript</h1>
+			            <h1 class="detalle__titulo">{{ book.title }}</h1>
 			            <div class="detalle_autor">
-			              <img src="/img/profesor.png" alt="" class="detalle__autor_img">
-			              <span class="detaller__autor_nombre">Marijn Haverbeke</span>
+			              <img src="{{ book.image }}" alt="" class="detalle__autor_img">
+			              <span class="detaller__autor_nombre">{{ book.summary }}</span>
 			            </div>
-			            <p class="detalle__descripcion">This is a book about JavaScript, programming, and the wonders of the digital. You can read it online here, or get your own paperback copy of the book.</p>
+			            <p class="detalle__descripcion">{{ book.summary }}</p>
 		          	</div>
 
 		        </div>
@@ -46,22 +46,25 @@
 			            <span class="icon-bubbles2 comentarios__cantidad"> 2</span>
 		          	</header>
 
-		          	<div class="comentario">
+		          	{% for comment in comments %}
+			          	<div class="comentario">
 
-			            <img src="/img/usuario.jpeg" alt="" class="comentario__img">
+				            <img src="/img/usuario.jpeg" alt="" class="comentario__img">
 
-			            <div class="comentario__texto">
+				            <div class="comentario__texto">
 
-			            	<h4 class="comentario__autor">Karen de Graaf</h4>
-			            	<p class="comentario__descripcion">This is a book about JavaScript, programming, and the wonders of the digital. You can read it online.</p>
+				            	<h4 class="comentario__autor">{{ comment.user.username }}</h4>
+				            	<p class="comentario__descripcion">{{ comment.comment }}</p>
 
-		            	</div>
+			            	</div>
 
-		          	</div>
+			          	</div>
+		          	{% endfor %}
 
-		          	<form class="comentario__form">
 
-		            	<input type="text" class="comentario__input" placeholder="Escribe un comentario ...">
+		          	<form class="comentario__form" method="POST">
+
+		            	<input type="text" name="comment" class="comentario__input" placeholder="Escribe un comentario ...">
 						
 		            	<button type="submit" class="comentario__boton">Dejar comentario</button>
 

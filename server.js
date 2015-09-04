@@ -43,4 +43,18 @@ server.listen(port, function() {
 	console.log("Servidor corriendo en el puerto " + port);
 });
 
+server.use(function(req, res, next){
+	server.locals.user = req.user;
+	next();
+});
+
+
+if (process.env.NODE_ENV === 'dev') {
+	require('./config/server/local')(server);
+};
+if (process.env.NODE_ENV === 'prod') {
+	require('./config/server/prod')(server);
+};
+
 require('./routers')(server);
+

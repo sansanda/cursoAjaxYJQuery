@@ -3,6 +3,14 @@ var express = require('express'),
 	router = express.Router(),
 	User = require('./models').User;
 
+
+router.route('/salir/')
+
+	.get(function (req, res) {
+		req.logout();
+		res.redirect('/');
+	});
+
 router.route('/ingresar/')
 
 	.get(function (req, res) {
