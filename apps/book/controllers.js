@@ -38,7 +38,12 @@ router.route('/libro/:book_slug')
 		});
 	});
 
-router.route('/admin/crear-libro')
+router.route('/footer/')
+	.get( function (req, res){
+		res.render('components/footer.html');
+	});
+
+router.route('/admin/crear-libro/')
 
 	.get(isLoggedIn, function (req, res) {
 		res.render('book/book_create.html');

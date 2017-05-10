@@ -6,6 +6,72 @@
 	<link rel="stylesheet" href="/css/fonts.css">
 	<link rel="stylesheet" href="/css/main.css">
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
+	<script>
+		/* Ejemplo 1 */
+		// var xhr = new XMLHttpRequest();
+		// xhr.onreadystatechange = function () {
+		// 	if (xhr.readyState === 4) {
+		// 		document.getElementById('ajax').innerHTML = xhr.responseText;
+		// 	}
+		// };
+
+		// xhr.open('GET', '/footer/');
+		// xhr.send();
+
+		/* Ejemplo 2 */
+
+		/* Ejemplo 3 */
+		// var xhr = new XMLHttpRequest();
+		// xhr.onreadystatechange = function () {
+		// 	if (xhr.readyState === 4 ) {
+		// 		if ( xhr.status === 200 ) {
+		// 			document.getElementById('ajax').innerHTML = xhr.responseText;
+		// 		}
+		// 	}
+		// };
+
+		// xhr.open('GET', '/footer/');
+		// xhr.send();
+
+		/* Ejemplo 4 */
+		// var xhr = new XMLHttpRequest();
+		// xhr.onreadystatechange = function () {
+		// 	if (xhr.readyState === 4 ) {
+		// 		if ( xhr.status === 200 ) {
+		// 			document.getElementById('ajax').innerHTML = xhr.responseText;
+		// 		} else if ( xhr.status === 404 ) {
+		// 			//No encontrado
+		// 		} else if ( xhr.status === 401 ) {
+		// 			//No autorizado
+		// 		} else if ( xhr.status === 500 ) {
+		// 			//Error de servidor
+		// 		}
+		// 	}
+		// };
+
+		// xhr.open('GET', '/footer/');
+		// xhr.send();
+		/* Ejemplo 5 */
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function () {
+			if (xhr.readyState === 4 ) {
+				if ( xhr.status === 200 ) {
+					document.getElementById('ajax').innerHTML = xhr.responseText;
+				} else if ( xhr.status === 404 ) {
+					alert('Error 404 Not Found');
+				} else if ( xhr.status === 401 ) {
+					alert('Error 401 Not Autorizate');
+				} else if ( xhr.status === 500 ) {
+					alert('Error 500');
+				}
+			}
+		};
+
+		xhr.open('GET', '/body/');
+		xhr.send();
+
+		
+	</script>
 </head>
 <body>
 	<header class="cabecera">
@@ -105,11 +171,9 @@
 			</div>
 		</div>
 	</section>
-	<footer class="footer">
-      <div class="contenedor">
-        <hr class="footer__linea">
-        <span class="footer__texto">Proyecto realizado por DevCode en el curso de Fundamentos de Node.js</span>
-      </div>
-    </footer>
+	<span>Obtener AJAX</span>
+	<div id="ajax">
+		
+	</div>
 </body>
 </html>
