@@ -33,7 +33,20 @@ router.route('/registrar/')
 		});
 		user.save(function (err) {
 			if (err) {console.error(err)};
-			res.redirect('/ingresar/');
+			res.redirect('/');
+		});
+	});
+
+router.route('/usuario/')
+
+	.get(function (req, res) {
+		User.findOne({username: req.query.username})
+		.then( function( usuario ){
+			if (usuario) {
+				res.send(usuario);
+			} else {
+				res.send('No se encontro');
+			}
 		});
 	});
 

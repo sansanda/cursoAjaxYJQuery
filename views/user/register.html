@@ -23,7 +23,7 @@
 			Registro
 		</h2>
 		<section class="login__registro__datos">
-			<form action="POST">
+			<form method="POST">
 				<div class="login__registro__datos__ingresar">
 					<input type="text" placeholder="Ingresa un nombre de usuario" name="username">
 				</div>
@@ -35,11 +35,18 @@
 		</section>
 
   	</div>
-	<footer class="footer">
-      <div class="contenedor">
-        <hr class="footer__linea">
-        <span class="footer__texto">Proyecto realizado por DevCode en el curso de Fundamentos de Node.js</span>
-      </div>
-    </footer>
+	<div id="ajax">
+		
+	</div>
+    <script src="/js/jquery.min.js"></script>
+    <script>
+    	$(document).ready( function(){
+    		$.get('/body/', function(data){
+    			$('#ajax').html(data);
+    		}).fail( function (jqXHR){
+    			alert(jqXHR.status);
+    		})
+    	})
+    </script>
 </body>
 </html>

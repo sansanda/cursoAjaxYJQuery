@@ -7,70 +7,38 @@
 	<link rel="stylesheet" href="/css/main.css">
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
 	<script>
-		/* Ejemplo 1 */
-		// var xhr = new XMLHttpRequest();
-		// xhr.onreadystatechange = function () {
-		// 	if (xhr.readyState === 4) {
-		// 		document.getElementById('ajax').innerHTML = xhr.responseText;
-		// 	}
-		// };
-
-		// xhr.open('GET', '/footer/');
-		// xhr.send();
-
-		/* Ejemplo 2 */
-
-		/* Ejemplo 3 */
-		// var xhr = new XMLHttpRequest();
-		// xhr.onreadystatechange = function () {
-		// 	if (xhr.readyState === 4 ) {
-		// 		if ( xhr.status === 200 ) {
-		// 			document.getElementById('ajax').innerHTML = xhr.responseText;
-		// 		}
-		// 	}
-		// };
-
-		// xhr.open('GET', '/footer/');
-		// xhr.send();
-
-		/* Ejemplo 4 */
-		// var xhr = new XMLHttpRequest();
-		// xhr.onreadystatechange = function () {
-		// 	if (xhr.readyState === 4 ) {
-		// 		if ( xhr.status === 200 ) {
-		// 			document.getElementById('ajax').innerHTML = xhr.responseText;
-		// 		} else if ( xhr.status === 404 ) {
-		// 			//No encontrado
-		// 		} else if ( xhr.status === 401 ) {
-		// 			//No autorizado
-		// 		} else if ( xhr.status === 500 ) {
-		// 			//Error de servidor
-		// 		}
-		// 	}
-		// };
-
-		// xhr.open('GET', '/footer/');
-		// xhr.send();
-		/* Ejemplo 5 */
-		var xhr = new XMLHttpRequest();
-		xhr.onreadystatechange = function () {
-			if (xhr.readyState === 4 ) {
+		//Ejemplo AJAX - error
+		/*var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function() {
+			if ( xhr.readyState === 4 ) {
 				if ( xhr.status === 200 ) {
 					document.getElementById('ajax').innerHTML = xhr.responseText;
-				} else if ( xhr.status === 404 ) {
-					alert('Error 404 Not Found');
-				} else if ( xhr.status === 401 ) {
-					alert('Error 401 Not Autorizate');
-				} else if ( xhr.status === 500 ) {
-					alert('Error 500');
 				}
 			}
-		};
-
-		xhr.open('GET', '/body/');
-		xhr.send();
-
-		
+		}
+		xhr.open('GET', '/footer/');
+		xhr.send();*/
+		//Ejemplo Obtener datos JSON
+		/*var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function () {
+			if ( xhr.readyState === 4 ) {
+				var arrayContactos = JSON.parse(xhr.responseText);
+				var contactosHTML = '<h3>Contactos</h3><ul>';
+				for ( let i = 0; i < arrayContactos.length ; i += 1 ) {
+					
+					contactosHTML += '<li class="menu__item">';
+					contactosHTML += arrayContactos[i].nombre;
+					contactosHTML += '|';
+					contactosHTML += arrayContactos[i].telefono;
+					contactosHTML += '</li>'
+					
+				}
+				contactosHTML += '</ul>';
+				document.getElementById('ajax').innerHTML = contactosHTML;
+			}
+		}
+		xhr.open('GET', '/datos-json/');
+		xhr.send();*/
 	</script>
 </head>
 <body>
@@ -90,7 +58,7 @@
 			<h1 class="principal__titulo">Librería</h1>
 			<span class="principal__subtitulo">Encuentra los mejores libros que deseas.</span>
 
-			<div class="libros">
+			<!--<div class="libros">
 
 				{% for book in books %}
 				
@@ -168,12 +136,31 @@
 
 					</div>
 				</article>
-			</div>
+			</div>-->
 		</div>
 	</section>
 	<span>Obtener AJAX</span>
 	<div id="ajax">
 		
 	</div>
+	<script src="/js/jquery.min.js"></script>
+	<script>
+		$(document).ready( function(){
+			$.getJSON('/datos-json/', function( response ){
+				var contactosHTML = '<h3>Contactos</h3><ul>';
+				$.each( response, function( index, value ){
+					if ( value.casado ) {
+						contactosHTML += '<li class="menu__item">';
+						contactosHTML += value.nombre;
+						contactosHTML += '|';
+						contactosHTML += value.telefono;
+						contactosHTML += '</li>'
+					}
+				});
+				contactosHTML += '</ul>';
+				$('#ajax').html(contactosHTML);
+			})
+		});
+	</script>
 </body>
 </html>

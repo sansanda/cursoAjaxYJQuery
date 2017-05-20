@@ -43,6 +43,34 @@ router.route('/footer/')
 		res.render('components/footer.html');
 	});
 
+router.route('/datos-json/')
+	.get( function (req, res){
+		var datos = [
+			{
+				"nombre": "Julio",
+				"telefono": "345 567",
+				"casado": false
+			},
+			{
+				"nombre": "Kevin",
+				"telefono": "678 980",
+				"casado": true
+			},
+			{
+				"nombre": "Eduardo",
+				"telefono": "345 678",
+				"casado": false
+			},
+			{
+				"nombre": "Saul",
+				"telefono": "568 456",
+				"casado": true
+			}
+		];
+
+		res.json(datos);
+	});
+
 router.route('/admin/crear-libro/')
 
 	.get(isLoggedIn, function (req, res) {
